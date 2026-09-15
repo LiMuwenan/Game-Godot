@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dqttygdqoqkrg" path="res://gd/game.gd" id="1_16yt1"]
 [ext_resource type="PackedScene" uid="uid://bjy1c24lq0gf7" path="res://assets/secene/player.tscn" id="2_vcltg"]
 [ext_resource type="PackedScene" uid="uid://ddj051lh0dhm4" path="res://assets/secene/Tree.tscn" id="3_3reyh"]
+[ext_resource type="FontFile" uid="uid://bqrqreutkbasc" path="res://assets/fonts/Better VCR 9.0.1.ttf" id="5_4p0ae"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12egx"]
 size = Vector2(113, 803)
@@ -77,6 +78,9 @@ shape = SubResource("RectangleShape2D_85hf8")
 wait_time = 0.3
 autostart = true
 
+[node name="TimeTimer" type="Timer" parent="Timer" unique_id=2098672980]
+autostart = true
+
 [node name="Car" type="Node" parent="." unique_id=1124265913]
 
 [node name="Mark" type="Node" parent="Car" unique_id=1373844055]
@@ -109,5 +113,20 @@ y_sort_enabled = true
 position = Vector2(31, 48)
 metadata/_edit_lock_ = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1832273182]
+
+[node name="Score" type="Label" parent="CanvasLayer" unique_id=1474409385]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.5
+offset_right = 101.5
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_4p0ae")
+theme_override_font_sizes/font_size = 30
+text = "Time: 0"
+
 [connection signal="body_entered" from="Borders/TargetArea" to="." method="_on_target_area_body_entered"]
 [connection signal="timeout" from="Timer/CarTimer" to="." method="_on_car_timer_timeout"]
+[connection signal="timeout" from="Timer/TimeTimer" to="." method="_on_time_timer_timeout"]
