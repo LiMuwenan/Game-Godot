@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://cl2jcknhrhw05"]
+
+[ext_resource type="Texture2D" uid="uid://b2dyp20ogt0yf" path="res://assets/graphics/map.png" id="1_2kf8t"]
+[ext_resource type="Script" uid="uid://dqttygdqoqkrg" path="res://gd/game.gd" id="1_16yt1"]
+[ext_resource type="PackedScene" uid="uid://bjy1c24lq0gf7" path="res://assets/secene/player.tscn" id="2_vcltg"]
+[ext_resource type="PackedScene" uid="uid://ddj051lh0dhm4" path="res://assets/secene/Tree.tscn" id="3_3reyh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12egx"]
+size = Vector2(113, 803)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frbss"]
+size = Vector2(70, 752.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smv5r"]
+size = Vector2(387, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xk7ed"]
+size = Vector2(487, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85hf8"]
+size = Vector2(386, 134)
+
+[node name="Game" type="Node2D" unique_id=1320365383]
+script = ExtResource("1_16yt1")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=709356089]
+texture = ExtResource("1_2kf8t")
+metadata/_edit_lock_ = true
+
+[node name="Borders" type="Node2D" parent="." unique_id=1470686664]
+metadata/_edit_lock_ = true
+
+[node name="Right" type="StaticBody2D" parent="Borders" unique_id=587354080]
+position = Vector2(219, -17)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Right" unique_id=1506783023]
+position = Vector2(29, -39)
+shape = SubResource("RectangleShape2D_12egx")
+
+[node name="Left" type="StaticBody2D" parent="Borders" unique_id=695816791]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Left" unique_id=2057505620]
+position = Vector2(-227, -20)
+shape = SubResource("RectangleShape2D_frbss")
+
+[node name="Top" type="StaticBody2D" parent="Borders" unique_id=1031752458]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Top" unique_id=1801425911]
+position = Vector2(1, -330)
+shape = SubResource("RectangleShape2D_smv5r")
+
+[node name="Bottom" type="StaticBody2D" parent="Borders" unique_id=1469985274]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Bottom" unique_id=530114169]
+position = Vector2(29, 330)
+shape = SubResource("RectangleShape2D_xk7ed")
+
+[node name="TargetArea" type="Area2D" parent="Borders" unique_id=2083004213]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TargetArea" unique_id=2131723466]
+position = Vector2(0, -254)
+shape = SubResource("RectangleShape2D_85hf8")
+
+[node name="Timer" type="Node" parent="." unique_id=988064098]
+
+[node name="CarTimer" type="Timer" parent="Timer" unique_id=349640802]
+wait_time = 0.3
+autostart = true
+
+[node name="Car" type="Node" parent="." unique_id=1124265913]
+
+[node name="Mark" type="Node" parent="Car" unique_id=1373844055]
+
+[node name="M1" type="Marker2D" parent="Car/Mark" unique_id=1431765090]
+position = Vector2(-183, -8)
+
+[node name="M2" type="Marker2D" parent="Car/Mark" unique_id=1726965414]
+position = Vector2(185, -102)
+
+[node name="M3" type="Marker2D" parent="Car/Mark" unique_id=685934220]
+position = Vector2(185, 103)
+
+[node name="M4" type="Marker2D" parent="Car/Mark" unique_id=649061224]
+position = Vector2(-185, 151)
+
+[node name="M5" type="Marker2D" parent="Car/Mark" unique_id=1013212234]
+position = Vector2(185, -41)
+
+[node name="Objects" type="Node2D" parent="." unique_id=1060940343]
+y_sort_enabled = true
+
+[node name="Tree" parent="Objects" unique_id=1794399586 instance=ExtResource("3_3reyh")]
+y_sort_enabled = true
+position = Vector2(65, 41)
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="Objects" unique_id=1262808264 instance=ExtResource("2_vcltg")]
+y_sort_enabled = true
+position = Vector2(31, 48)
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Borders/TargetArea" to="." method="_on_target_area_body_entered"]
+[connection signal="timeout" from="Timer/CarTimer" to="." method="_on_car_timer_timeout"]
