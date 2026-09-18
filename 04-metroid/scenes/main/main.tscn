@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bwfw6y2n1fkc7"]
+
+[ext_resource type="PackedScene" uid="uid://cf5h171h1nr1i" path="res://scenes/level/level.tscn" id="1_iuonh"]
+[ext_resource type="Script" uid="uid://db3fp1m7i7gfe" path="res://scenes/main/main.gd" id="1_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://cx7iypssoyfcv" path="res://scenes/player/player.tscn" id="2_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://chmvpee53cf8a" path="res://scenes/drone/drone.tscn" id="4_l3cfh"]
+
+[node name="Main" type="Node2D" unique_id=357088296]
+script = ExtResource("1_k2fmo")
+
+[node name="Level" parent="." unique_id=2109944161 instance=ExtResource("1_iuonh")]
+position = Vector2(4, -8)
+
+[node name="Player" parent="." unique_id=1968094252 instance=ExtResource("2_k2fmo")]
+position = Vector2(189, 589)
+
+[node name="Bullets" type="Node2D" parent="." unique_id=1075590006]
+
+[node name="Drones" type="Node2D" parent="." unique_id=2065004684]
+
+[node name="Drone" parent="Drones" unique_id=91002112 instance=ExtResource("4_l3cfh")]
+position = Vector2(371, 533)
+
+[node name="Drone2" parent="Drones" unique_id=48029371 instance=ExtResource("4_l3cfh")]
+position = Vector2(310, 510)
+
+[node name="Drone3" parent="Drones" unique_id=1043866661 instance=ExtResource("4_l3cfh")]
+position = Vector2(169, 491)
+
+[connection signal="attack" from="Player" to="." method="_on_player_attack"]
