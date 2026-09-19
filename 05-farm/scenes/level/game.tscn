@@ -10,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://byfag0kgqavgo" path="res://graphics/tilesets/soil_water.png" id="6_3ny2s"]
 [ext_resource type="Shader" uid="uid://dob4rlnhcsipm" path="res://scenes/level/tree.gdshader" id="9_ig4jx"]
 
+[sub_resource type="Gradient" id="Gradient_ig4jx"]
+offsets = PackedFloat32Array(0, 0.4988263, 1)
+colors = PackedColorArray(0.9137255, 0.827451, 0.7607843, 1, 1, 1, 1, 1, 0.24313726, 0.3372549, 0.58431375, 1)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f2w0s"]
 texture = ExtResource("1_qhoho")
 0:0/animation_columns = 4
@@ -876,6 +880,11 @@ texture = ExtResource("6_3ny2s")
 [sub_resource type="TileSet" id="TileSet_xk7ed"]
 sources/0 = SubResource("TileSetAtlasSource_ig4jx")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ig4jx"]
+resource_local_to_scene = true
+shader = ExtResource("9_ig4jx")
+shader_parameter/progress = 0.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pn0ym"]
 resource_local_to_scene = true
 shader = ExtResource("9_ig4jx")
@@ -886,13 +895,9 @@ resource_local_to_scene = true
 shader = ExtResource("9_ig4jx")
 shader_parameter/progress = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3kax"]
-resource_local_to_scene = true
-shader = ExtResource("9_ig4jx")
-shader_parameter/progress = 0.0
-
 [node name="Game" type="Node2D" unique_id=1375413217]
 script = ExtResource("1_f2w0s")
+day_time_gradient = SubResource("Gradient_ig4jx")
 
 [node name="layers" type="Node2D" parent="." unique_id=1518151230]
 
@@ -920,15 +925,35 @@ y_sort_enabled = true
 [node name="Player" parent="Objects" unique_id=1434633781 instance=ExtResource("1_e6yxx")]
 
 [node name="Tree" parent="Objects" unique_id=8401356 groups=["trees"] instance=ExtResource("4_qrcxb")]
-material = SubResource("ShaderMaterial_pn0ym")
+material = SubResource("ShaderMaterial_ig4jx")
 position = Vector2(76, -55)
 
 [node name="Tree2" parent="Objects" unique_id=1220638197 groups=["trees"] instance=ExtResource("4_qrcxb")]
-material = SubResource("ShaderMaterial_0o7gw")
+material = SubResource("ShaderMaterial_pn0ym")
 position = Vector2(64, 50)
 
 [node name="Tree3" parent="Objects" unique_id=125365442 groups=["trees"] instance=ExtResource("4_qrcxb")]
-material = SubResource("ShaderMaterial_d3kax")
+material = SubResource("ShaderMaterial_0o7gw")
 position = Vector2(-98, -91)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=351119912]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=452757864]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=76893979]
+
+[node name="DayTimer" type="Timer" parent="." unique_id=1269602284]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[connection signal="seed_use" from="Objects/Player" to="." method="_on_player_seed_use"]
 [connection signal="tool_use" from="Objects/Player" to="." method="_on_player_tool_use"]
+[connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
