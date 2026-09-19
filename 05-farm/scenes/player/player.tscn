@@ -44,11 +44,11 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"sword_attack"
+"method": &"ace_use"
 }]
 }
 
@@ -74,11 +74,11 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"sword_attack"
+"method": &"ace_use"
 }]
 }
 
@@ -104,11 +104,11 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"sword_attack"
+"method": &"ace_use"
 }]
 }
 
@@ -134,11 +134,11 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"sword_attack"
+"method": &"ace_use"
 }]
 }
 
@@ -1106,7 +1106,6 @@ transitions = ["AXE", "HOE", SubResource("AnimationNodeStateMachineTransition_rw
 graph_offset = Vector2(29.201904, -79)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6eyoc"]
-graph_offset = Vector2(-128.1755, 29.265886)
 nodes/output/position = Vector2(902.8571, 171.42857)
 nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_p47bc")
 nodes/MoveStateMachine/position = Vector2(354.2857, 160)
