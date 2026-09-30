@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://p63xn5vlp467"]
+
+[ext_resource type="Texture2D" uid="uid://cproxhccob85g" path="res://assets/sprites/Players/Player_1.png" id="1_vmaee"]
+[ext_resource type="Script" uid="uid://brjn3a1k336sd" path="res://resources/units/unit_stats.gd" id="2_crglw"]
+
+[resource]
+script = ExtResource("2_crglw")
+name = "WellRounded"
+icon = ExtResource("1_vmaee")
+health = 15
+damage = 3
+luck = 5.0
+block_chance = 1.0
+gold_drop = 0
+metadata/_custom_type_script = "uid://brjn3a1k336sd"

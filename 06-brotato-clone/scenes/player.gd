@@ -12,7 +12,6 @@ class_name Player
 
 
 var move_dir: Vector2
-var speed: int = 500
 var is_dashing := false
 var dash_available := true
 
@@ -26,7 +25,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var vel = move_dir * speed
+	var vel = move_dir * stats.speed
 	if is_dashing:
 		vel *= dash_speed_muli_rate
 	position += vel * delta
