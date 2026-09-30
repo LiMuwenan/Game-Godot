@@ -1,5 +1,20 @@
 [gd_scene format=3 uid="uid://bebbb8ib6rbdg"]
 
 [ext_resource type="PackedScene" uid="uid://byqn485v2pmjo" path="res://scenes/unit.tscn" id="1_lhenu"]
+[ext_resource type="Script" uid="uid://cr3ns4to3xnwg" path="res://scenes/player.gd" id="2_g8n7m"]
+[ext_resource type="Texture2D" uid="uid://cproxhccob85g" path="res://assets/sprites/Players/Player_1.png" id="2_vy6lh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k673f"]
+radius = 60.0
 
 [node name="PlayerWellRounded" unique_id=2048376337 instance=ExtResource("1_lhenu")]
+script = ExtResource("2_g8n7m")
+
+[node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1672665413) index="1" unique_id=907352150]
+texture = ExtResource("2_vy6lh")
+
+[node name="CollisionShape2D" parent="Visuals" parent_id_path=PackedInt32Array(1672665413) index="2" unique_id=454963549]
+position = Vector2(-2, -64)
+shape = SubResource("CircleShape2D_k673f")
+
+[node name="Camera2D" type="Camera2D" parent="." index="1" unique_id=266785452]
