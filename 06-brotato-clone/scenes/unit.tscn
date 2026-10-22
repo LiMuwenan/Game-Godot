@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfn1odj8knm1h" path="res://scenes/unit.gd" id="1_1jvru"]
 [ext_resource type="Texture2D" uid="uid://devt2xbk78rej" path="res://assets/sprites/shadow.png" id="1_k673f"]
+[ext_resource type="Texture2D" uid="uid://cproxhccob85g" path="res://assets/sprites/Players/Player_1.png" id="3_1jvru"]
 
 [sub_resource type="Animation" id="Animation_gic7v"]
 length = 0.001
@@ -242,17 +243,26 @@ script = ExtResource("1_1jvru")
 unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
 
+[node name="Trail" type="Line2D" parent="Visuals" unique_id=380115151]
+top_level = true
+points = PackedVector2Array(0, -50, -168, -50, -6, -8)
+
 [node name="Shadow" type="Sprite2D" parent="Visuals" unique_id=731362735]
 modulate = Color(0.101960786, 0.101960786, 0.101960786, 0.654902)
+z_index = 1
 scale = Vector2(0.8, 1)
 texture = ExtResource("1_k673f")
 
 [node name="Sprite" type="Sprite2D" parent="Visuals" unique_id=907352150]
 unique_name_in_owner = true
+z_index = 1
 position = Vector2(-2, -65)
+texture = ExtResource("3_1jvru")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals" unique_id=454963549]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=454963549]
+scale = Vector2(0.5, 0.5)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" unique_id=1522899300]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1522899300]
+root_node = NodePath("../Visuals")
 libraries/ = SubResource("AnimationLibrary_oee7j")
 autoplay = &"idle"

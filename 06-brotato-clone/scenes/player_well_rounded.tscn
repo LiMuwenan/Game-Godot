@@ -3,6 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://byqn485v2pmjo" path="res://scenes/unit.tscn" id="1_lhenu"]
 [ext_resource type="Script" uid="uid://cr3ns4to3xnwg" path="res://scenes/player.gd" id="2_g8n7m"]
 [ext_resource type="Resource" uid="uid://p63xn5vlp467" path="res://resources/units/players/stat_player_well_rounded.tres" id="3_g8n7m"]
+[ext_resource type="Script" uid="uid://t8mo6bk38fbd" path="res://scenes/trail.gd" id="4_e37wi"]
+
+[sub_resource type="Curve" id="Curve_e37wi"]
+_data = [Vector2(0.23999998, 0), 0.0, 0.0, 0, 0, Vector2(0.7433333, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k673f"]
 radius = 60.0
@@ -10,18 +15,31 @@ radius = 60.0
 [node name="PlayerWellRounded" unique_id=2048376337 instance=ExtResource("1_lhenu")]
 script = ExtResource("2_g8n7m")
 dash_duration = 1.0
-dash_cool_down = 3.0
+dash_cool_down = 1.0
 dash_speed_muli_rate = 4.5
 stats = ExtResource("3_g8n7m")
 
-[node name="CollisionShape2D" parent="Visuals" parent_id_path=PackedInt32Array(1672665413) index="2" unique_id=454963549]
+[node name="Trail" parent="Visuals" parent_id_path=PackedInt32Array(1672665413) index="0" unique_id=380115151 node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+position = Vector2(0, -35)
+points = PackedVector2Array(-0.9999924, -1)
+width_curve = SubResource("Curve_e37wi")
+script = ExtResource("4_e37wi")
+player = NodePath("../..")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=454963549]
 position = Vector2(-2, -64)
 shape = SubResource("CircleShape2D_k673f")
 
-[node name="DashCoolDownTimer" type="Timer" parent="." index="1" unique_id=279346980]
+[node name="DashDurationTimer" type="Timer" parent="." index="3" unique_id=311147697]
 one_shot = true
 
-[node name="DashDurationTimer" type="Timer" parent="." index="2" unique_id=311147697]
+[node name="DashCoolDownTimer" type="Timer" parent="." index="4" unique_id=279346980]
+one_shot = true
+
+[node name="TrailTimer" type="Timer" parent="." index="5" unique_id=1163775699]
+unique_name_in_owner = true
 one_shot = true
 
 [connection signal="timeout" from="DashDurationTimer" to="." method="_on_dash_duration_timer_timeout"]
+[connection signal="timeout" from="TrailTimer" to="Visuals/Trail" method="_on_trail_timer_timeout"]

@@ -2,13 +2,14 @@ extends Unit
 class_name Player
 
 @export var dash_duration := 1.0
-@export var dash_cool_down := 3.0
-@export var dash_speed_muli_rate := 3.0
+@export var dash_cool_down := 1.0
+@export var dash_speed_muli_rate := 1.25
 
 
 @onready var dash_cool_down_timer: Timer = $DashCoolDownTimer
 @onready var dash_duration_timer: Timer = $DashDurationTimer
-@onready var collision_shape_2d: CollisionShape2D = $Visuals/CollisionShape2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var trail: Trail = %Trail
 
 
 var move_dir: Vector2
@@ -49,6 +50,7 @@ func update_forward():
 func start_dash():
 	is_dashing = true
 	dash_duration_timer.start()
+	trail.start_trail()
 	visuals.modulate.a = 0.5
 	collision_shape_2d.set_deferred("disabled", true) # 延迟调用。如果正在碰撞处理时关闭碰撞会引发异常
 	
